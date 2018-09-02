@@ -1,6 +1,7 @@
 FROM centos:centos7
-ADD coletor.jar /home/superBits/projetos/vip/coletas/mufato/
+ADD coletor.jar /root/
 ADD installChromeDriver.sh /usr/local/bin
+ADD chromedriver /usr/local/bin 
 ADD google-chrome.repo /etc/yum.repos.d/google-chrome.repo
 ADD categoria.txt /home/superBits/projetos/vip/coletas/mufato/
 CMD ["/bin/bash"]
@@ -14,4 +15,8 @@ RUN installChromeDriver.sh
 EXPOSE 8080
 COPY google-chrome.repo  etc/yum.repos.d/google-chrome.repo
 #user coletor
+CMD java -jar /root/coletor.jar
+
+
+
 

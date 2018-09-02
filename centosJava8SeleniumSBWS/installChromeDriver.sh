@@ -13,10 +13,10 @@ SELENIUM_SUBDIR=$(echo "$SELENIUM_STANDALONE_VERSION" | cut -d"." -f-2)
 
 # Remove existing downloads and binaries so we can start from scratch.
 yum remove google-chrome-stable
-rm ~/selenium-server-standalone-*.jar
-rm ~/chromedriver_linux64.zip
-rm /usr/local/bin/chromedriver
-rm /usr/local/bin/selenium-server-standalone.jar
+#rm ~/selenium-server-standalone-*.jar
+#rm ~/chromedriver_linux64.zip
+#rm /usr/local/bin/chromedriver
+#rm /usr/local/bin/selenium-server-standalone.jar
 
 # Install dependencies.
 #sudo yum update
@@ -25,9 +25,9 @@ yum install -y unzip  xvfb libxi6 libgconf-2-4
 yum install -y google-chrome-stable
 
 # Install ChromeDriver.
-wget -N https://chromedriver.storage.googleapis.com/2.35/chromedriver_linux64.zip -P ~/
-unzip ~/chromedriver_linux64.zip -d ~/
-rm ~/chromedriver_linux64.zip
-mv -f ~/chromedriver /usr/local/bin/chromedriver
+#wget -N https://chromedriver.storage.googleapis.com/2.35/chromedriver_linux64.zip -P ~/
+#unzip ~/chromedriver_linux64.zip -d ~/
+#rm ~/chromedriver_linux64.zip
+#mv -f ~/chromedriver /usr/local/bin/chromedriver
 chown root:root /usr/local/bin/chromedriver
 chmod 0755 /usr/local/bin/chromedriver
