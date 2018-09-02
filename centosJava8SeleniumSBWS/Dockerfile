@@ -1,7 +1,8 @@
 FROM centos:centos7
-ADD coletor.jar ~
+ADD coletor.jar /home/superBits/projetos/vip/coletas/mufato/
 ADD installChromeDriver.sh /usr/local/bin
 ADD google-chrome.repo /etc/yum.repos.d/google-chrome.repo
+ADD categoria.txt /home/superBits/projetos/vip/coletas/mufato/
 CMD ["/bin/bash"]
 LABEL Description="Estação contendo Centos 7.5 + Java8"
 #ENTRYPOINT ["java"]
