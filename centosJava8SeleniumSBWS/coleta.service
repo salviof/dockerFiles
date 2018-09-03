@@ -1,0 +1,14 @@
+[Unit]
+Description=Servico de coleta
+[Service]
+# The configuration file application.properties should be here:
+WorkingDirectory=/home/baseColeta 
+ExecStart=/usr/bin/java -Xmx2560m -jar /home/baseColeta/coleta.jar
+SuccessExitStatus=143
+TimeoutStopSec=10
+Restart=on-failure
+RestartSec=5
+User=root
+Type=oneshot
+[Install]
+WantedBy=multi-user.target 
