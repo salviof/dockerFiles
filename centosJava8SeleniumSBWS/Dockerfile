@@ -4,6 +4,7 @@ ADD installChromeDriver.sh /usr/local/bin
 ADD chromedriver /usr/local/bin/
 ADD google-chrome.repo /etc/yum.repos.d/google-chrome.repo
 ADD categoria.txt /home/baseColeta/
+ADD categoria.txt /home/superBits/projetos/vip/coletas/mufato/
 LABEL Description="Estação contendo Centos 7.5 + Java8"
 #ENTRYPOINT ["java"]
 ENV JAVA_HOME=/usr/java/latest 
@@ -14,8 +15,8 @@ RUN installChromeDriver.sh
 EXPOSE 8080
 COPY google-chrome.repo  etc/yum.repos.d/google-chrome.repo
 #user coletor
-CMD nohup java -jar /home/baseColeta/coletor.jar & > /home/superBits/projetos/vip/coletas/mufato/logColetor.txt
-CMD ["/bin/bash"]
+ENTRYPOINT java -jar /home/baseColeta/coletor.jar >/home/superBits/projetos/vip/coletas/mufato/logColetor.txt
+#CMD ["/bin/bash"]
 
 
 
