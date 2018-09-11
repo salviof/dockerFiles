@@ -4,7 +4,7 @@ ADD installChromeDriver.sh /usr/local/bin
 ADD chromedriver /usr/local/bin/
 ADD google-chrome.repo /etc/yum.repos.d/google-chrome.repo
 
-ADD ean_sem_fotos.txt /home/superBits/projetos/vip/coletas/paoDeAcucar
+ADD ean_sem_fotos.txt /home/superBits/projetos/vip/coletas/paoDeAcucar/
 LABEL Description="Estação contendo Centos 7.5 + Java8"
 #ENTRYPOINT ["java"]
 ENV JAVA_HOME=/usr/java/latest 
