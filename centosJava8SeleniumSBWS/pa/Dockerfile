@@ -1,6 +1,6 @@
 FROM centos:centos7
 ADD coleta.jar /home/baseColeta/
-ADD installChromeDriver.sh /usr/local/bin
+ADD ../installChromeDriver.sh /usr/local/bin
 ADD chromedriver /usr/local/bin/
 ADD google-chrome.repo /etc/yum.repos.d/google-chrome.repo
 
