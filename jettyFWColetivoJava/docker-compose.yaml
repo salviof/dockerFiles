@@ -1,0 +1,53 @@
+version: '3.5'
+services:
+  
+  
+  mysql-portal:
+    container_name: amysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: senhaEspacoDockerProtegido
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: db`root
+      MYSQL_PASSWORD: senhaEspacoDockerProtegido
+      MYSQL_ROOT_HOST: "%"
+    ports:
+    -  "3306"
+    volumes:
+    -  ./mysql/data:/var/lib/mysql
+    - /home/superBits/projetos/vip/release/superkompras/:/home/git/publicados/superkompras/
+    restart: always
+    networks:
+      bancoSK:
+         ipv4_address: 172.16.238.2
+
+  jetty:
+    container_name: ajetty
+    image: jetty:9.4-jre8
+    ports:
+    - "8080:8080"      
+  
+    volumes:
+    - ./jetty/webapps:/var/lib/jetty/webapps
+    - ./jetty/wars/:/var/lib/jetty/wars/
+    - ./jetty/etc/:/var/lib/jetty/etc/
+    - ./jetty/home/jetty/:/home/jetty/
+    - /home/superBits/projetos/vip/release/superkompras/:/home/git/publicados/superkompras/
+    networks:
+    - front        
+    - bancoSK
+    depends_on:
+    -  mysql-portal 
+    extra_hosts:
+     - "superComprasModel.superkompras.dockerIntranetColetivoJava.org.br:172.16.238.2"
+ 
+networks:
+  front:
+    driver: bridge
+        # use the bridge driver, but enable IPv6       
+  bancoSK:
+    driver: bridge    
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.238.0/24
