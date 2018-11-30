@@ -1,7 +1,7 @@
 version: '3.5'
 services:
-  
-  
+
+
   mysql-portal:
     container_name: amysql
     image: mysql:5.7
@@ -14,19 +14,29 @@ services:
     ports:
     -  "3306"
     volumes:
-    -  ./mysql/data:/var/lib/mysql
+    #-  ./mysql/data:/var/lib/mysql
     - /home/superBits/projetos/vip/release/superkompras/:/home/git/publicados/superkompras/
     restart: always
     networks:
       bancoSK:
          ipv4_address: 172.16.238.2
+  phpmyadmin:
+    image:  phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    environment:
+     - PMA_ARBITRARY=1
+    restart: always
+    ports:
+     - 3333:80
+    networks:
+      bancoSK:
 
   jetty:
     container_name: ajetty
     image: jetty:9.4-jre8
     ports:
-    - "8080:8080"      
-  
+    - "8080:8080"
+
     volumes:
     - ./jetty/webapps:/var/lib/jetty/webapps
     - ./jetty/wars/:/var/lib/jetty/wars/
@@ -34,19 +44,19 @@ services:
     - ./jetty/home/jetty/:/home/jetty/
     - /home/superBits/projetos/vip/release/superkompras/:/home/git/publicados/superkompras/
     networks:
-    - front        
+    - front
     - bancoSK
     depends_on:
-    -  mysql-portal 
+    -  mysql-portal
     extra_hosts:
      - "superComprasModel.superkompras.dockerIntranetColetivoJava.org.br:172.16.238.2"
- 
+
 networks:
   front:
     driver: bridge
-        # use the bridge driver, but enable IPv6       
+        # use the bridge driver, but enable IPv6
   bancoSK:
-    driver: bridge    
+    driver: bridge
     ipam:
       driver: default
       config:
